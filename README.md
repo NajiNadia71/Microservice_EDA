@@ -20,12 +20,20 @@ Benefits of EDA:
 
 Scalability:
 Components can be added or removed without affecting the rest of the system, making it easier to scale. 
+
+
 Real-time Responsiveness:
 Events allow for immediate reactions to changes within the system, enabling real-time processing. 
+
+
 Flexibility:
 EDA provides flexibility in how systems are designed and can be adapted to changing requirements. 
+
+
 Decoupling:
 Loose coupling between components makes it easier to maintain and evolve the system. 
+
+
 Fault Tolerance:
 If a component fails, the rest of the system can continue to function, as long as the event broker is robust. 
 ---------------------------------------------------
@@ -34,36 +42,14 @@ Details related to this project:
 There are  Sectors in a Company Named Color Company, each of them have a database for themselves(just in this case) and require to have be notified of changes of data in another sector.
 
 It is required to implement a Microservice.
-List Of Sectors:
-1. Production_Sector
-    -DB:production
-     -TBL:production_type,production(Count,production_type,Date) 
-       publish production
-
-2. Advertisement_Sector
-    -DB:advertisement
-     -TBL:advertisement(production_id,Date,Text,colorCode) 
-     -Publish advertisement
-     -consume production\color
-
-3. Prediction_Sector(Not in this repo)
-    -DB:prdiction
-     -TBL:color(Date,colorcode) 
-    -Publish color
-
-4. Broadcasting_ads_Sector(Not in this repo)
-    -DB:broadcasting_ads
-     -TBL:broadcasting(advertisementId,Date,liveat)
-    TO many Write
-    -consume advertisement
-
-
 
 SO for Example:if in the Production Comany an Item is created then the Advertisement Comapny must be notified so it can make an advertisement based on that as well as adding the product in their DB.
 
 So in this scenario >
 1. Production Company is a Publisher to Kafka, which means every time it creates a production item, it calls Kafka producer 
+
 2. Advertisement Company is a consumer of Kafka
+
 3.Kafka is a event broker(I use the image here ) [Kafka Image ](/kafka-broker/docker-compose.yml)
 
 
